@@ -5,3 +5,4 @@ resources:
 - grafana-prometheusRule.yaml  
 - nodeExporter-prometheusRule.yaml  
 - prometheusOperator-prometheusRule.yaml
+- prometheus-prometheusRule.yaml
