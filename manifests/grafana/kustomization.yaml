@@ -7,4 +7,5 @@ resources:
 - grafana-serviceAccount.yaml
 - grafana-dashboardDatasources.yaml  
 - grafana-dashboardSources.yaml      
-- grafana-networkPolicy.yaml  grafana-service.yaml
+- grafana-networkPolicy.yaml  
+- grafana-service.yaml
