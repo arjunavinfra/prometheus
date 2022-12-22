@@ -4,3 +4,4 @@ resources:
 - ./prometheus-serviceAccount.yaml  
 - ./prometheus-prometheus.yaml
 - ./prometheus-service.yaml
+
