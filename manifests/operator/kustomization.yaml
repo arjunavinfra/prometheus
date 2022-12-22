@@ -6,7 +6,5 @@ resources:
 - ./prometheusOperator-clusterRoleBinding.yaml
 - ./prometheusOperator-deployment.yaml
 - ./prometheusOperator-networkPolicy.yaml
-- ./prometheusOperator-prometheusRule.yaml
 - ./prometheusOperator-service.yaml
 - ./prometheusOperator-serviceAccount.yaml
-- ./prometheusOperator-serviceMonitor.yaml
