@@ -1,1 +1,1 @@
-# prometheus-kubernetes-stack
+# prometheus-operator stack
