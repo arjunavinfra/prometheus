@@ -6,3 +6,5 @@ resources:
 - prometheus
 - alertManager
 - grafana
+- nodeExporter
+- PrometheusRule
