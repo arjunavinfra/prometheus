@@ -1,11 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-- ./manifests/setup/0alertmanagerConfigCustomResourceDefinition.yaml
-- ./manifests/setup/0alertmanagerCustomResourceDefinition.yaml
-- ./manifests/setup/0podmonitorCustomResourceDefinition.yaml
-- ./manifests/setup/0probeCustomResourceDefinition.yaml
-- ./manifests/setup/0prometheusCustomResourceDefinition.yaml
-- ./manifests/setup/0prometheusruleCustomResourceDefinition.yaml
-- ./manifests/setup/0servicemonitorCustomResourceDefinition.yaml
-- ./manifests/setup/0thanosrulerCustomResourceDefinition.yaml
+- ./0alertmanagerConfigCustomResourceDefinition.yaml
+- ./0alertmanagerCustomResourceDefinition.yaml
+- ./0podmonitorCustomResourceDefinition.yaml
+- ./0probeCustomResourceDefinition.yaml
+- ./0prometheusCustomResourceDefinition.yaml
+- ./0prometheusruleCustomResourceDefinition.yaml
+- ./0servicemonitorCustomResourceDefinition.yaml
+- ./0thanosrulerCustomResourceDefinition.yaml
