@@ -4,3 +4,5 @@ resources:
 - alertmanager-serviceAccount.yaml 
 - alertmanager-alertmanager.yaml   
 - alertmanager-service.yaml 
+- alertmanager-secret.yaml
+- AlertmanagerConfig.yaml
