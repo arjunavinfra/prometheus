@@ -33,4 +33,7 @@ spec:
     runAsNonRoot: true
     runAsUser: 1000
   serviceAccountName: alertmanager-main
+  alertmanagerConfigSelector:
+    matchLabels:
+      alertmanagerConfig: alertmanager-config
   version: 0.24.0
