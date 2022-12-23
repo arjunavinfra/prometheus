@@ -5,6 +5,5 @@ resources:
 - nodeExporter-serviceAccount.yaml
 - nodeExporter-clusterRoleBinding.yaml  
 - nodeExporter-networkPolicy.yaml   
-- nodeExporter-serviceMonitor.yaml
 - nodeExporter-clusterRole.yaml
 - nodeExporter-service.yaml

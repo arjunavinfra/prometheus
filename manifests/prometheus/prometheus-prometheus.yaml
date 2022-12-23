@@ -47,4 +47,7 @@ spec:
   serviceMonitorSelector: 
       matchLabels:
         app.kubernetes.io/part-of: kube-prometheus
+  additionalScrapeConfigs:
+    name: additional-scrape-configs
+    key: prometheus-additional.yaml
   version: 2.40.7
