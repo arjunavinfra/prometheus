@@ -7,5 +7,4 @@ resources:
 - nodeExporter-networkPolicy.yaml   
 - nodeExporter-serviceMonitor.yaml
 - nodeExporter-clusterRole.yaml
-- nodeExporter-prometheusRule.yaml 
 - nodeExporter-service.yaml

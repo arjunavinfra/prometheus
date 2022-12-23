@@ -3,9 +3,7 @@ kind: Kustomization
 resources:
 - kubeStateMetrics-clusterRoleBinding.yaml  
 - kubeStateMetrics-networkPolicy.yaml   
-- kubeStateMetrics-serviceMonitor.yaml
-- kubeStateMetrics-clusterRole.yaml         
-- kubeStateMetrics-prometheusRule.yaml  
+- kubeStateMetrics-clusterRole.yaml           
 - kubeStateMetrics-service.yaml
 - kubeStateMetrics-deployment.yaml         
 - kubeStateMetrics-serviceAccount.yaml
