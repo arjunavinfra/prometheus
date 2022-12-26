@@ -5,7 +5,7 @@ resources:
 - operator
 - prometheus
 - alertManager
-# - grafana 
+- grafana 
 - nodeExporter
 - kubeStateMetrics
 - serviceMonitor
