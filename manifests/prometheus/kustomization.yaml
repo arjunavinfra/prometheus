@@ -16,3 +16,7 @@ resources:
 #Thanos configuration 
 
 - ./thanos-aws-backend-secret.yaml
+- ./thanos-query-deployment.yaml  
+- ./thanos-query-service.yaml  
+- ./thanos-ruler-service.yaml  
+- ./thanos-ruler.yaml
