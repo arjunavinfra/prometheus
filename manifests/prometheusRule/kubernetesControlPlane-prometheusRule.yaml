@@ -20,7 +20,7 @@ spec:
         summary: Pod is crash looping.
       expr: |
         max_over_time(kube_pod_container_status_waiting_reason{reason="CrashLoopBackOff", job="kube-state-metrics"}[5m]) >= 1
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubePodNotReady
@@ -37,7 +37,7 @@ spec:
             1, max by(namespace, pod, owner_kind, cluster) (kube_pod_owner{owner_kind!="Job"})
           )
         ) > 0
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeDeploymentGenerationMismatch
@@ -51,7 +51,7 @@ spec:
         kube_deployment_status_observed_generation{job="kube-state-metrics"}
           !=
         kube_deployment_metadata_generation{job="kube-state-metrics"}
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeDeploymentReplicasMismatch
@@ -70,7 +70,7 @@ spec:
             ==
           0
         )
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeStatefulSetReplicasMismatch
@@ -89,7 +89,7 @@ spec:
             ==
           0
         )
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeStatefulSetGenerationMismatch
@@ -103,7 +103,7 @@ spec:
         kube_statefulset_status_observed_generation{job="kube-state-metrics"}
           !=
         kube_statefulset_metadata_generation{job="kube-state-metrics"}
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeStatefulSetUpdateNotRolledOut
@@ -130,7 +130,7 @@ spec:
             ==
           0
         )
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeDaemonSetRolloutStuck
@@ -163,7 +163,7 @@ spec:
             ==
           0
         )
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeContainerWaiting
@@ -199,7 +199,7 @@ spec:
         summary: DaemonSet pods are misscheduled.
       expr: |
         kube_daemonset_status_number_misscheduled{job="kube-state-metrics"} > 0
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeJobNotCompleted
@@ -222,7 +222,7 @@ spec:
         summary: Job failed to complete.
       expr: |
         kube_job_failed{job="kube-state-metrics"}  > 0
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeHpaReplicasMismatch
@@ -245,7 +245,7 @@ spec:
         kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics"})
           and
         changes(kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}[15m]) == 0
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeHpaMaxedOut
@@ -258,7 +258,7 @@ spec:
         kube_horizontalpodautoscaler_status_current_replicas{job="kube-state-metrics"}
           ==
         kube_horizontalpodautoscaler_spec_max_replicas{job="kube-state-metrics"}
-      for: 15m
+      for: 1m
       labels:
         severity: warning
   - name: kubernetes-resources
@@ -326,7 +326,7 @@ spec:
           / ignoring(instance, job, type)
         (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
           > 0.9 < 1
-      for: 15m
+      for: 1m
       labels:
         severity: info
     - alert: KubeQuotaFullyUsed
@@ -340,7 +340,7 @@ spec:
           / ignoring(instance, job, type)
         (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
           == 1
-      for: 15m
+      for: 1m
       labels:
         severity: info
     - alert: KubeQuotaExceeded
@@ -354,7 +354,7 @@ spec:
           / ignoring(instance, job, type)
         (kube_resourcequota{job="kube-state-metrics", type="hard"} > 0)
           > 1
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: CPUThrottlingHigh
@@ -369,7 +369,7 @@ spec:
           /
         sum(increase(container_cpu_cfs_periods_total{}[5m])) by (container, pod, namespace)
           > ( 25 / 100 )
-      for: 15m
+      for: 1m
       labels:
         severity: info
   - name: kubernetes-storage
@@ -489,7 +489,7 @@ spec:
         summary: Different semantic versions of Kubernetes components running.
       expr: |
         count by (cluster) (count by (git_version, cluster) (label_replace(kubernetes_build_info{job!~"kube-dns|coredns"},"git_version","$1","git_version","(v[0-9]*.[0-9]*).*"))) > 1
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeClientErrors
@@ -503,7 +503,7 @@ spec:
           /
         sum(rate(rest_client_requests_total[5m])) by (cluster, instance, job, namespace))
         > 0.01
-      for: 15m
+      for: 1m
       labels:
         severity: warning
   - name: kube-apiserver-slos
@@ -531,7 +531,7 @@ spec:
         sum(apiserver_request:burnrate6h) > (6.00 * 0.01000)
         and
         sum(apiserver_request:burnrate30m) > (6.00 * 0.01000)
-      for: 15m
+      for: 1m
       labels:
         long: 6h
         severity: critical
@@ -617,7 +617,7 @@ spec:
         summary: Target disappeared from Prometheus target discovery.
       expr: |
         absent(up{job="apiserver"} == 1)
-      for: 15m
+      for: 1m
       labels:
         severity: critical
     - alert: KubeAPITerminatedRequests
@@ -641,7 +641,7 @@ spec:
         summary: Node is not ready.
       expr: |
         kube_node_status_condition{job="kube-state-metrics",condition="Ready",status="true"} == 0
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeNodeUnreachable
@@ -652,7 +652,7 @@ spec:
         summary: Node is unreachable.
       expr: |
         (kube_node_spec_taint{job="kube-state-metrics",key="node.kubernetes.io/unreachable",effect="NoSchedule"} unless ignoring(key,value) kube_node_spec_taint{job="kube-state-metrics",key=~"ToBeDeletedByClusterAutoscaler|cloud.google.com/impending-node-termination|aws-node-termination-handler/spot-itn"}) =! 1
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeletTooManyPods
@@ -669,7 +669,7 @@ spec:
         max by(cluster, node) (
           kube_node_status_capacity{job="kube-state-metrics",resource="pods"} != 1
         ) > 0.95
-      for: 15m
+      for: 1m
       labels:
         severity: info
     - alert: KubeNodeReadinessFlapping
@@ -680,7 +680,7 @@ spec:
         summary: Node readiness status is flapping.
       expr: |
         sum(changes(kube_node_status_condition{status="true",condition="Ready"}[15m])) by (cluster, node) < 2
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeletPlegDurationHigh
@@ -702,7 +702,7 @@ spec:
         summary: Kubelet Pod startup latency is too high.
       expr: |
         histogram_quantile(0.99, sum(rate(kubelet_pod_worker_duration_seconds_bucket{job="kubelet", metrics_path="/metrics"}[5m])) by (cluster, instance, le)) * on(cluster, instance) group_left(node) kubelet_node_name{job="kubelet", metrics_path="/metrics"} > 60
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeletClientCertificateExpiration
@@ -753,7 +753,7 @@ spec:
         summary: Kubelet has failed to renew its client certificate.
       expr: |
         increase(kubelet_certificate_manager_client_expiration_renew_errors[5m]) > 0
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeletServerCertificateRenewalErrors
@@ -764,7 +764,7 @@ spec:
         summary: Kubelet has failed to renew its server certificate.
       expr: |
         increase(kubelet_server_expiration_renew_errors[5m]) > 0
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeletDown
@@ -774,7 +774,7 @@ spec:
         summary: Target disappeared from Prometheus target discovery.
       expr: |
         absent(up{job="kubelet", metrics_path="/metrics"} == 1)
-      for: 15m
+      for: 1m
       labels:
         severity: critical
   - name: kubernetes-system-scheduler
@@ -786,7 +786,7 @@ spec:
         summary: Target disappeared from Prometheus target discovery.
       expr: |
         absent(up{job="kube-scheduler"} == 1)
-      for: 15m
+      for: 1m
       labels:
         severity: critical
   - name: kubernetes-system-controller-manager
@@ -799,7 +799,7 @@ spec:
         summary: Target disappeared from Prometheus target discovery.
       expr: |
         absent(up{job="kube-controller-manager"} == 1)
-      for: 15m
+      for: 1m
       labels:
         severity: critical
   - name: kube-apiserver-burnrate.rules

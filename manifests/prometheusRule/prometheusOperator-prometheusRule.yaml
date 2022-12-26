@@ -22,7 +22,7 @@ spec:
         summary: Errors while performing list operations in controller.
       expr: |
         (sum by (controller,namespace) (rate(prometheus_operator_list_operations_failed_total{job="prometheus-operator",namespace="monitoring"}[10m])) / sum by (controller,namespace) (rate(prometheus_operator_list_operations_total{job="prometheus-operator",namespace="monitoring"}[10m]))) > 0.4
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: PrometheusOperatorWatchErrors
@@ -33,7 +33,7 @@ spec:
         summary: Errors while performing watch operations in controller.
       expr: |
         (sum by (controller,namespace) (rate(prometheus_operator_watch_operations_failed_total{job="prometheus-operator",namespace="monitoring"}[5m])) / sum by (controller,namespace) (rate(prometheus_operator_watch_operations_total{job="prometheus-operator",namespace="monitoring"}[5m]))) > 0.4
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: PrometheusOperatorSyncFailed

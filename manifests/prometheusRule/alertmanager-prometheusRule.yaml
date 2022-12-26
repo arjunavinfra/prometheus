@@ -41,7 +41,7 @@ spec:
           max_over_time(alertmanager_cluster_members{job="alertmanager-main",namespace="monitoring"}[5m])
         < on (namespace,service) group_left
           count by (namespace,service) (max_over_time(alertmanager_cluster_members{job="alertmanager-main",namespace="monitoring"}[5m]))
-      for: 15m
+      for: 1m
       labels:
         severity: critical
     - alert: AlertmanagerFailedToSendAlerts

@@ -26,7 +26,7 @@ spec:
           /
         sum(rate(kube_state_metrics_list_total{job="kube-state-metrics"}[5m])))
         > 0.01
-      for: 15m
+      for: 1m
       labels:
         severity: critical
     - alert: KubeStateMetricsWatchErrors
@@ -41,7 +41,7 @@ spec:
           /
         sum(rate(kube_state_metrics_watch_total{job="kube-state-metrics"}[5m])))
         > 0.01
-      for: 15m
+      for: 1m
       labels:
         severity: critical
     - alert: KubeStateMetricsShardingMismatch
@@ -53,7 +53,7 @@ spec:
         summary: kube-state-metrics sharding is misconfigured.
       expr: |
         stdvar (kube_state_metrics_total_shards{job="kube-state-metrics"}) != 0
-      for: 15m
+      for: 1m
       labels:
         severity: critical
     - alert: KubeStateMetricsShardsMissing
@@ -67,6 +67,6 @@ spec:
           -
         sum( 2 ^ max by (shard_ordinal) (kube_state_metrics_shard_ordinal{job="kube-state-metrics"}) )
         != 0
-      for: 15m
+      for: 1m
       labels:
         severity: critical

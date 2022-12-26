@@ -229,7 +229,7 @@ spec:
         summary: RAID Array is degraded
       expr: |
         node_md_disks_required{job="node-exporter",device=~"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)"} - ignoring (state) (node_md_disks{state="active",job="node-exporter",device=~"(/dev/)?(mmcblk.p.+|nvme.+|rbd.+|sd.+|vd.+|xvd.+|dm-.+|md.+|dasd.+)"}) > 0
-      for: 15m
+      for: 1m
       labels:
         severity: critical
     - alert: NodeRAIDDiskFailure
@@ -252,7 +252,7 @@ spec:
         (
           node_filefd_allocated{job="node-exporter"} * 100 / node_filefd_maximum{job="node-exporter"} > 70
         )
-      for: 15m
+      for: 1m
       labels:
         severity: warning
     - alert: NodeFileDescriptorLimit
@@ -265,7 +265,7 @@ spec:
         (
           node_filefd_allocated{job="node-exporter"} * 100 / node_filefd_maximum{job="node-exporter"} > 90
         )
-      for: 15m
+      for: 1m
       labels:
         severity: critical
   - name: node-exporter.rules
