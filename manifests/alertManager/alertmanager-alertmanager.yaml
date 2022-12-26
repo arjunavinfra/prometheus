@@ -36,5 +36,6 @@ spec:
   alertmanagerConfigSelector:
     matchLabels:
       alertmanagerConfig: alertmanager-config
+  secrets:
+    - "alertmanager-secret"   # this is an importent one 
   version: 0.24.0
-

@@ -11,16 +11,22 @@ spec:
     groupInterval: 5m
     repeatInterval: 12h
     receiver: 'opsgenie'
+    matchers:
+      name: myname
+
     routes:
     - receiver: 'opsgenie'
       group_wait: 10s
       matchers:
-      - severity=~"critical|warning"
-
+      - name: severity 
+        regex: true
+        values: "critical|warning"
     - receiver: 'slack'
       group_wait: 10s
       matchers:
-      - severity=~"critical|warning"
+      - name: severity 
+        regex: true
+        values: "critical|warning"
 
   receivers:
   - name: 'opsgenie'
@@ -42,3 +48,4 @@ spec:
         {{ .Annotations.description }}
         {{ .Annotations.message }}
         {{ end }}
+
