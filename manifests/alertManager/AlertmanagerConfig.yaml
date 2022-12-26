@@ -32,6 +32,13 @@ spec:
       
   - name: 'slack'
     slackConfigs:
-    - apiURL:
+    - sendResolved: true
+      apiURL:
         key: slack
         name: alertmanager-secret
+      channel: '#ci-cd-notifications'
+      text: |-
+        {{ range .Alerts }}{{ .Annotations.summary }}
+        {{ .Annotations.description }}
+        {{ .Annotations.message }}
+        {{ end }}

@@ -1,0 +1,25 @@
+level=info ts=2022-12-26T05:52:24.840819393Z caller=main.go:220 msg="Starting Prometheus Operator" version="(version=0.61.1, branch=refs/tags/v0.61.1, revision=bbd7400711a99eda6c140c31e17f770355617b66)"
+level=info ts=2022-12-26T05:52:24.840943151Z caller=main.go:221 build_context="(go=go1.19.3, user=Action-Run-ID-3542121197, date=20221124-16:02:08)"
+level=warn ts=2022-12-26T05:52:24.855747152Z caller=operator.go:332 component=prometheusoperator msg="failed to check if the API supports the endpointslice resources" err="converting (v1.APIGroup) to (v1.APIResourceList): unknown conversion"
+level=info ts=2022-12-26T05:52:24.855848142Z caller=operator.go:334 component=prometheusoperator msg="Kubernetes API capabilities" endpointslices=false
+level=info ts=2022-12-26T05:52:24.859799731Z caller=main.go:103 msg="Starting insecure server on [::]:8080"
+level=info ts=2022-12-26T05:52:24.861922261Z caller=operator.go:310 component=thanosoperator msg="connection established" cluster-version=v1.25.3
+level=info ts=2022-12-26T05:52:24.861997619Z caller=operator.go:319 component=thanosoperator msg="CRD API endpoints ready"
+level=info ts=2022-12-26T05:52:24.862196036Z caller=operator.go:434 component=prometheusoperator msg="connection established" cluster-version=v1.25.3
+level=info ts=2022-12-26T05:52:24.862235008Z caller=operator.go:443 component=prometheusoperator msg="CRD API endpoints ready"
+level=info ts=2022-12-26T05:52:24.862444739Z caller=operator.go:457 component=alertmanageroperator msg="connection established" cluster-version=v1.25.3
+level=info ts=2022-12-26T05:52:24.862485177Z caller=operator.go:466 component=alertmanageroperator msg="CRD API endpoints ready"
+level=info ts=2022-12-26T05:52:25.44078184Z caller=operator.go:271 component=thanosoperator msg="successfully synced all caches"
+level=info ts=2022-12-26T05:52:25.540851603Z caller=operator.go:297 component=alertmanageroperator msg="successfully synced all caches"
+level=info ts=2022-12-26T05:52:25.542595386Z caller=operator.go:638 component=alertmanageroperator key=monitoring/main msg="sync alertmanager"
+level=warn ts=2022-12-26T05:52:25.543487183Z caller=operator.go:1003 component=alertmanageroperator msg="skipping alertmanagerconfig" error="route[0]: json: cannot unmarshal string into Go struct field Route.matchers of type v1alpha1.Matcher" alertmanagerconfig=monitoring/alertmanager-config namespace=monitoring alertmanager=main
+level=info ts=2022-12-26T05:52:25.842449533Z caller=operator.go:787 component=alertmanageroperator alertmanager=main namespace=monitoring msg="config secret not found, using default Alertmanager configuration" secret=alertmanager-main
+level=info ts=2022-12-26T05:52:25.942454903Z caller=operator.go:373 component=prometheusoperator msg="successfully synced all caches"
+level=info ts=2022-12-26T05:52:25.942744742Z caller=operator.go:1326 component=prometheusoperator key=monitoring/k8s msg="update prometheus status"
+level=info ts=2022-12-26T05:52:25.942970816Z caller=operator.go:1162 component=prometheusoperator key=monitoring/k8s msg="sync prometheus"
+level=info ts=2022-12-26T05:52:26.140683094Z caller=operator.go:638 component=alertmanageroperator key=monitoring/main msg="sync alertmanager"
+level=warn ts=2022-12-26T05:52:26.140878718Z caller=operator.go:1003 component=alertmanageroperator msg="skipping alertmanagerconfig" error="route[0]: json: cannot unmarshal string into Go struct field Route.matchers of type v1alpha1.Matcher" alertmanagerconfig=monitoring/alertmanager-config namespace=monitoring alertmanager=main
+level=info ts=2022-12-26T05:52:26.241868281Z caller=operator.go:787 component=alertmanageroperator alertmanager=main namespace=monitoring msg="config secret not found, using default Alertmanager configuration" secret=alertmanager-main
+level=info ts=2022-12-26T05:52:27.396484593Z caller=operator.go:1162 component=prometheusoperator key=monitoring/k8s msg="sync prometheus"
+level=info ts=2022-12-26T05:52:27.440424402Z caller=operator.go:1326 component=prometheusoperator key=monitoring/k8s msg="update prometheus status"
+level=info ts=2022-12-26T05:52:28.66829007Z caller=operator.go:1326 component=prometheusoperator key=monitoring/k8s msg="update prometheus status"
