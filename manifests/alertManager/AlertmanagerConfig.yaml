@@ -11,22 +11,28 @@ spec:
     groupInterval: 5m
     repeatInterval: 12h
     receiver: 'opsgenie'
-    matchers:
-      name: myname
 
     routes:
     - receiver: 'opsgenie'
       group_wait: 10s
       matchers:
-      - name: severity 
-        regex: true
-        values: "critical|warning"
+      - matchType: =~
+        name: severity
+        values: critical|warning
+
     - receiver: 'slack'
       group_wait: 10s
       matchers:
-      - name: severity 
-        regex: true
-        values: "critical|warning"
+      - matchType: =
+        name: severity
+        values: critical|warning
+
+    - matchers:
+      - matchType: =
+        name: alertname
+        value: Watchdog
+      receiver: asdf
+
 
   receivers:
   - name: 'opsgenie'
