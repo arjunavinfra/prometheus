@@ -17,10 +17,21 @@ spec:
       matchers:
       - severity=~"critical|warning"
 
+    - receiver: 'slack'
+      group_wait: 10s
+      matchers:
+      - severity=~"critical|warning"
+
   receivers:
   - name: 'opsgenie'
     opsgenieConfigs:
     - apiURL: "https://papergrid.app.opsgenie.com/"
       apiKey:
         key: opsgenie
+        name: alertmanager-secret
+      
+  - name: 'slack'
+    slackConfigs:
+    - apiURL:
+        key: slack
         name: alertmanager-secret
