@@ -10,3 +10,4 @@ resources:
 - kubeStateMetrics
 - serviceMonitor
 - prometheusRule
+- sample-instument-app
