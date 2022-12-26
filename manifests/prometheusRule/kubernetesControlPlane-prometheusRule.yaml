@@ -175,7 +175,7 @@ spec:
         summary: Pod container waiting longer than 1 hour
       expr: |
         sum by (namespace, pod, container, cluster) (kube_pod_container_status_waiting_reason{job="kube-state-metrics"}) > 0
-      for: 3m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeDaemonSetNotScheduled
@@ -418,7 +418,7 @@ spec:
         kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
         unless on(namespace, persistentvolumeclaim)
         kube_persistentvolumeclaim_labels{label_excluded_from_alerts="true"} == 1
-      for: 3m
+      for: 1m
       labels:
         severity: warning
     - alert: KubePersistentVolumeInodesFillingUp
@@ -465,7 +465,7 @@ spec:
         kube_persistentvolumeclaim_access_mode{ access_mode="ReadOnlyMany"} == 1
         unless on(namespace, persistentvolumeclaim)
         kube_persistentvolumeclaim_labels{label_excluded_from_alerts="true"} == 1
-      for: 3m
+      for: 1m
       labels:
         severity: warning
     - alert: KubePersistentVolumeErrors
@@ -517,7 +517,7 @@ spec:
         sum(apiserver_request:burnrate1h) > (14.40 * 0.01000)
         and
         sum(apiserver_request:burnrate5m) > (14.40 * 0.01000)
-      for: 2m
+      for: 1m
       labels:
         long: 1h
         severity: critical
@@ -545,7 +545,7 @@ spec:
         sum(apiserver_request:burnrate1d) > (3.00 * 0.01000)
         and
         sum(apiserver_request:burnrate2h) > (3.00 * 0.01000)
-      for: 3m
+      for: 1m
       labels:
         long: 1d
         severity: warning
