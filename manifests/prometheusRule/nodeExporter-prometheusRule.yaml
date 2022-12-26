@@ -62,7 +62,7 @@ spec:
         and
           node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: NodeFilesystemAlmostOutOfSpace
@@ -77,7 +77,7 @@ spec:
         and
           node_filesystem_readonly{job="node-exporter",fstype!="",mountpoint!=""} == 0
         )
-      for: 5m
+      for: 1m
       labels:
         severity: critical
     - alert: NodeFilesystemFilesFillingUp

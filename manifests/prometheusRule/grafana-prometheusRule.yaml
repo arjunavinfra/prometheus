@@ -24,7 +24,7 @@ spec:
         / ignoring (status_code)
         sum without (status_code) (namespace_job_handler_statuscode:grafana_http_request_duration_seconds_count:rate5m{handler!~"/api/datasources/proxy/:id.*|/api/ds/query|/api/tsdb/query"})
         > 50
-      for: 5m
+      for: 1m
       labels:
         severity: warning
   - name: grafana_rules

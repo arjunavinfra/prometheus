@@ -299,7 +299,7 @@ spec:
           /
         sum(kube_node_status_allocatable{resource="cpu", job="kube-state-metrics"})
           > 1.5
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeMemoryQuotaOvercommit
@@ -312,7 +312,7 @@ spec:
           /
         sum(kube_node_status_allocatable{resource="memory", job="kube-state-metrics"})
           > 1.5
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeQuotaAlmostFull
@@ -476,7 +476,7 @@ spec:
         summary: PersistentVolume is having issues with provisioning.
       expr: |
         kube_persistentvolume_status_phase{phase=~"Failed|Pending",job="kube-state-metrics"} > 0
-      for: 5m
+      for: 1m
       labels:
         severity: critical
   - name: kubernetes-system
@@ -574,7 +574,7 @@ spec:
         summary: Client certificate is about to expire.
       expr: |
         apiserver_client_certificate_expiration_seconds_count{job="apiserver"} > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m]))) < 604800
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeClientCertificateExpiration
@@ -585,7 +585,7 @@ spec:
         summary: Client certificate is about to expire.
       expr: |
         apiserver_client_certificate_expiration_seconds_count{job="apiserver"} > 0 and on(job) histogram_quantile(0.01, sum by (job, le) (rate(apiserver_client_certificate_expiration_seconds_bucket{job="apiserver"}[5m]))) < 86400
-      for: 5m
+      for: 1m
       labels:
         severity: critical
     - alert: KubeAggregatedAPIErrors
@@ -607,7 +607,7 @@ spec:
         summary: Kubernetes aggregated API is down.
       expr: |
         (1 - max by(name, namespace, cluster)(avg_over_time(aggregator_unavailable_apiservice[10m]))) * 100 < 85
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeAPIDown
@@ -629,7 +629,7 @@ spec:
           }} of its incoming requests.
       expr: |
         sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m]))  / (  sum(rate(apiserver_request_total{job="apiserver"}[10m])) + sum(rate(apiserver_request_terminations_total{job="apiserver"}[10m])) ) > 0.20
-      for: 5m
+      for: 1m
       labels:
         severity: warning
   - name: kubernetes-system-kubelet
@@ -691,7 +691,7 @@ spec:
         summary: Kubelet Pod Lifecycle Event Generator is taking too long to relist.
       expr: |
         node_quantile:kubelet_pleg_relist_duration_seconds:histogram_quantile{quantile="0.99"} <= 10
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: KubeletPodStartUpLatencyHigh

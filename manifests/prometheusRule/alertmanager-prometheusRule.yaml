@@ -58,7 +58,7 @@ spec:
           rate(alertmanager_notifications_total{job="alertmanager-main",namespace="monitoring"}[5m])
         )
         > 0.01
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: AlertmanagerClusterFailedToSendAlerts
@@ -76,7 +76,7 @@ spec:
           rate(alertmanager_notifications_total{job="alertmanager-main",namespace="monitoring", integration=~`.*`}[5m])
         )
         > 0.01
-      for: 5m
+      for: 1m
       labels:
         severity: critical
     - alert: AlertmanagerClusterFailedToSendAlerts
@@ -94,7 +94,7 @@ spec:
           rate(alertmanager_notifications_total{job="alertmanager-main",namespace="monitoring", integration!~`.*`}[5m])
         )
         > 0.01
-      for: 5m
+      for: 1m
       labels:
         severity: warning
     - alert: AlertmanagerConfigInconsistent
@@ -130,7 +130,7 @@ spec:
           )
         )
         >= 0.5
-      for: 5m
+      for: 1m
       labels:
         severity: critical
     - alert: AlertmanagerClusterCrashlooping
@@ -152,6 +152,6 @@ spec:
           )
         )
         >= 0.5
-      for: 5m
+      for: 1m
       labels:
         severity: critical

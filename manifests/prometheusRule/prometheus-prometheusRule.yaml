@@ -284,7 +284,7 @@ spec:
         summary: Prometheus has failed to sync targets.
       expr: |
         increase(prometheus_target_sync_failed_total{job="prometheus-k8s",namespace="monitoring"}[30m]) > 0
-      for: 5m
+      for: 1m
       labels:
         severity: critical
     - alert: PrometheusHighQueryLoad
