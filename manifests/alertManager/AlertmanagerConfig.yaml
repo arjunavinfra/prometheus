@@ -27,13 +27,6 @@ spec:
         name: severity
         values: critical|warning
 
-    - matchers:
-      - matchType: =
-        name: alertname
-        value: Watchdog
-      receiver: asdf
-
-
   receivers:
   - name: 'opsgenie'
     opsgenieConfigs:
