@@ -35,5 +35,5 @@ spec:
   serviceAccountName: alertmanager-main
   alertmanagerConfigSelector:
     matchLabels:
-      alertmanagerConfig: alertmanager-config
+          alertmanagerConfig: alertmanager-config
   version: 0.24.0
