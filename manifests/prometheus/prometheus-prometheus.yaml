@@ -57,4 +57,9 @@ spec:
         resources:
           requests:
             storage: 2Gi
+  thanos:
+    image: quay.io/thanos/thanos:v0.28.1
+    objectStorageConfig:
+      key: thanos.yaml
+      name: thanos-objstore-config
   version: 2.40.7
