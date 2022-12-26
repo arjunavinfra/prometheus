@@ -12,3 +12,7 @@ resources:
 - prometheus-roleBindingSpecificNamespaces.yaml
 - prometheus-clusterRole.yaml
 - prometheus-clusterRoleBinding.yaml
+
+#Thanos configuration 
+
+- ./thanos-aws-backend-secret.yaml
