@@ -12,4 +12,4 @@ spec:
     port: 10901
     targetPort: grpc
   selector:
-    prometheus: self
+    app.kubernetes.io/component: prometheus

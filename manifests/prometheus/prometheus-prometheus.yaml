@@ -18,8 +18,8 @@ spec:
       port: web
   enableFeatures: []
   externalLabels: 
-    datacenter: california
-    cluster: production
+    prometheus_replica: main
+    thanos_ruler_replica: main
   image: quay.io/prometheus/prometheus:v2.40.7
   nodeSelector:
     kubernetes.io/os: linux
@@ -59,6 +59,7 @@ spec:
         resources:
           requests:
             storage: 2Gi
+  retention: 3h
   thanos:
     image: quay.io/thanos/thanos:v0.28.1
     objectStorageConfig:
