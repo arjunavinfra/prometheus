@@ -18,8 +18,8 @@ spec:
       port: web
   enableFeatures: []
   externalLabels: 
-    cluster: production
-    env: prod
+    prometheus_replica: main
+    thanos_ruler_replica: main
   image: quay.io/prometheus/prometheus:v2.40.7
   nodeSelector:
     kubernetes.io/os: linux
