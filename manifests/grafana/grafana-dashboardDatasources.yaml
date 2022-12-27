@@ -9,7 +9,7 @@ metadata:
   name: grafana-datasources
   namespace: monitoring
 stringData:
-  datasources.yaml: |-
+  prometheus.yaml: |-
     {
         "apiVersion": 1,
         "datasources": [
@@ -20,6 +20,21 @@ stringData:
                 "orgId": 1,
                 "type": "prometheus",
                 "url": "http://prometheus-k8s.monitoring.svc:9090",
+                "version": 1
+            }
+        ]
+    }
+  thanos-query.yaml: |-
+    {
+        "apiVersion": 1,
+        "datasources": [
+            {
+                "access": "proxy",
+                "editable": false,
+                "name": "thanos",
+                "orgId": 1,
+                "type": "prometheus",
+                "url": "http://thanos-query.monitoring.svc:10902",
                 "version": 1
             }
         ]
