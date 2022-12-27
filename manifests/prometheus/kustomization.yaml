@@ -17,6 +17,8 @@ resources:
 
 - ./thanos-aws-backend-secret.yaml
 
+- ./thanos-sidecar-service.yaml
+
 - ./thanos-query-deployment.yaml  
 - ./thanos-query-service.yaml  
 
