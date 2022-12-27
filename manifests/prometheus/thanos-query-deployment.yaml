@@ -19,10 +19,10 @@ spec:
       - args:
         - query
         - --log.level=debug
-        - --query.replica-label=prometheus_replica
-        # - --query.replica-label=thanos_ruler_replica
+        - --query.replica-label=cluster
+        - --query.replica-label=env
         - --store=dnssrv+_grpc._tcp.thanos-sidecar.monitoring.svc.cluster.local
-        # - --store=dnssrv+_grpc._tcp.thanos-ruler.monitoring.svc.cluster.local
+        - --store=dnssrv+_grpc._tcp.thanos-ruler.monitoring.svc.cluster.local
         image: quay.io/thanos/thanos:v0.25.1
         name: thanos-query
         ports:
