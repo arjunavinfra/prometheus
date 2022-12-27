@@ -24,24 +24,6 @@ spec:
         app.kubernetes.io/name: thanos-store
         app.kubernetes.io/version: v0.29.0
     spec:
-      affinity:
-        podAntiAffinity:
-          preferredDuringSchedulingIgnoredDuringExecution:
-          - podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                - key: app.kubernetes.io/name
-                  operator: In
-                  values:
-                  - thanos-store
-                - key: app.kubernetes.io/instance
-                  operator: In
-                  values:
-                  - thanos-store
-              namespaces:
-              - thanos
-              topologyKey: kubernetes.io/hostname
-            weight: 100
       containers:
       - args:
         - store
@@ -63,7 +45,6 @@ spec:
             fieldRef:
               fieldPath: status.hostIP
         image: quay.io/thanos/thanos:v0.29.0
-        imagePullPolicy: IfNotPresent
         livenessProbe:
           failureThreshold: 8
           httpGet:
@@ -86,13 +67,10 @@ spec:
             scheme: HTTP
           periodSeconds: 5
         resources: {}
-        terminationMessagePolicy: FallbackToLogsOnError
         volumeMounts:
         - mountPath: /var/thanos/store
           name: data
           readOnly: false
-      nodeSelector:
-        kubernetes.io/os: linux
       securityContext:
         fsGroup: 65534
         runAsUser: 65534
