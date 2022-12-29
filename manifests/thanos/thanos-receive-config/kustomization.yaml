@@ -17,3 +17,4 @@ resources:
 -  ./thanos-store-statefulSet.yaml
 -  ./thanos-receive-ingestor-default-service.yaml  
 -  ./thanos-receive-router-serviceAccount.yaml
+-  ./thanos-aws-backend-secret.yaml
