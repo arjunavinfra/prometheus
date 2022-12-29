@@ -60,6 +60,9 @@ spec:
           requests:
             storage: 2Gi
   retention: 3h
+  remoteWrite: 
+    - url:
+        "http://thanos-receive-ingestor-default.monitoring.svc.cluster.local:10901"
   thanos:
     image: quay.io/thanos/thanos:v0.28.1
     objectStorageConfig:
