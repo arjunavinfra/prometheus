@@ -11,4 +11,4 @@ spec:
   - dnssrv+_http._tcp.thanos-query.monitoring.svc.cluster.local
   ruleSelector:
     matchLabels:
-      role: thanos-example
+      role: alert-rules
