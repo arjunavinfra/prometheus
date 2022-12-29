@@ -20,3 +20,26 @@ spec:
     app.kubernetes.io/component: query-layer
     app.kubernetes.io/instance: thanos-query
     app.kubernetes.io/name: thanos-query
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/component: query-layer
+    app.kubernetes.io/instance: thanos-query
+    app.kubernetes.io/name: thanos-query
+    app.kubernetes.io/version: v0.29.0
+  name: thanos-query-external
+  namespace: monitoring
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 9090
+    targetPort: 9090
+  selector:
+    app.kubernetes.io/component: query-layer
+    app.kubernetes.io/instance: thanos-query
+    app.kubernetes.io/name: thanos-query
