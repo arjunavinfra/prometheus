@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 #Thanos configuration 
 
-- ./thanos-sidecar-config
+# - ./thanos-sidecar-config
 - ./thanos-receive-config
