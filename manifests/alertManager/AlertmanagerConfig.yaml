@@ -4,33 +4,38 @@ metadata:
   name: alertmanager-config
   labels:
     alertmanagerConfig: alertmanager-config
+    app.kubernetes.io/component: alert-router
+    app.kubernetes.io/instance: main
+    app.kubernetes.io/name: alertmanager
+    app.kubernetes.io/part-of: kube-prometheus
+    app.kubernetes.io/version: 0.24.0
 spec: 
   route:
     groupBy: ['alertname','job']
     groupWait: 30s
     groupInterval: 5m
     repeatInterval: 12h
-    receiver: 'opsgenie'
+    receiver: 'slack'
 
     routes:
-    - receiver: 'opsgenie'
-      group_wait: 10s
-      matchers:
-      - matchType: =~
-        name: severity
-        values: critical|warning
+    # - receiver: 'opsgenie'
+    #   group_wait: 10s
+      # matchers:
+      # - matchType: =~
+      #   name: severity
+      #   values: "critical"
 
     - receiver: 'slack'
       group_wait: 10s
-      matchers:
-      - matchType: =
-        name: severity
-        values: critical|warning
+      # matchers:
+      # - matchType: =
+      #   name: severity
+      #   values: "critical"
 
   receivers:
   - name: 'opsgenie'
     opsgenieConfigs:
-    - apiURL: "https://papergrid.app.opsgenie.com/"
+    - apiURL: "https://api.opsgenie.com/"
       apiKey:
         key: opsgenie
         name: alertmanager-secret
@@ -41,7 +46,8 @@ spec:
       apiURL:
         key: slack
         name: alertmanager-secret
-      channel: '#ci-cd-notifications'
+      channel: '#devops'
+      username: 'webhookbot'
       text: |-
         {{ range .Alerts }}{{ .Annotations.summary }}
         {{ .Annotations.description }}
