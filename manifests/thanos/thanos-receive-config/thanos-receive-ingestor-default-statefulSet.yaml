@@ -9,7 +9,7 @@ metadata:
     controller.receive.thanos.io: thanos-receive-controller
     controller.receive.thanos.io/hashring: default
   name: thanos-receive-ingestor-default
-  namespace: thanos
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -64,7 +64,7 @@ spec:
       containers:
       - args:
         - receive
-        - --log.level=debug 
+        - --log.level=info
         - --log.format=logfmt
         - --grpc-address=0.0.0.0:10901
         - --http-address=0.0.0.0:10902
