@@ -11,4 +11,5 @@ resources:
 - serviceMonitor
 - prometheusRule
 - sample-instument-app
-- minio
+# - minio
+- thanos
