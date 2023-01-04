@@ -39,5 +39,5 @@ spec:
   type: LoadBalancer
   ports:
   - name: alertmanager-external
-    port: 9093
+    port: 80
     targetPort: 9093

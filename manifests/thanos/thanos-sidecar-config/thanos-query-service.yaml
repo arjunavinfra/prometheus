@@ -25,7 +25,7 @@ spec:
   type: LoadBalancer 
   ports:
   - name: http
-    port: 10902
+    port: 80
     targetPort: http
   selector:
     app.kubernetes.io/name: thanos-query
