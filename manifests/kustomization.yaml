@@ -4,12 +4,12 @@ resources:
 - crd
 - operator
 - prometheus
-- alertmanager
+- alert-manager
 - grafana 
-- nodeexporter
-- kubestatemetrics
-- serviceMonitor
-- prometheusrule
+- node-exporter
+- kube-state-metrics
+- service-monitor
+- prometheus-rule
 - sample-instument-app
 # - minio
 - thanos
