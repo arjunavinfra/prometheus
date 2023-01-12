@@ -51,3 +51,16 @@ spec:
             name: grafana
             port:
               number: 3000
+
+  - host: "minio"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: minio-service
+            port:
+              number: 9000
+
+              
