@@ -59,7 +59,7 @@ spec:
         resources:
           requests:
             storage: 2Gi
-  retention: 3h
+  retention: 15m
   remoteWrite: 
     - url:
         "http://thanos-receive-ingestor-default-0.thanos-receive-ingestor-default.monitoring.svc.cluster.local:19291/api/v1/receive"
