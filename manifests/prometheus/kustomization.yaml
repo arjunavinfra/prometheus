@@ -13,4 +13,3 @@ resources:
 - prometheus-roleBindingSpecificNamespaces.yaml
 - prometheus-clusterRole.yaml
 - prometheus-clusterRoleBinding.yaml
-

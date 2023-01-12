@@ -49,6 +49,7 @@ spec:
         - --store=dnssrv+_grpc._tcp.thanos-store.monitoring.svc.cluster.local:10901
         - --store=dnssrv+_grpc._tcp.thanos-receive-ingestor-default.monitoring.svc.cluster.local:10901
         - --query.auto-downsampling
+       #- --store=<IP address of secoundary thanos sidecar>
         env:
         - name: HOST_IP_ADDRESS
           valueFrom:
