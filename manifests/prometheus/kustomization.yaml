@@ -5,6 +5,7 @@ resources:
 - ./prometheus-additionalConfig-secret.yaml
 - ./prometheus-serviceAccount.yaml  
 - ./prometheus-service.yaml
+- ./ingress-svc.yaml
 
 - prometheus-roleBindingConfig.yaml
 - prometheus-roleConfig.yaml
@@ -12,3 +13,4 @@ resources:
 - prometheus-roleBindingSpecificNamespaces.yaml
 - prometheus-clusterRole.yaml
 - prometheus-clusterRoleBinding.yaml
+
