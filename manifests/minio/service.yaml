@@ -5,8 +5,13 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - port: 9000
+    - name: data
+      port: 9000
       targetPort: 9000
+      protocol: TCP
+    - name: ui
+      port: 37131
+      targetPort: 37131
       protocol: TCP
   selector:
     app: minio
