@@ -27,7 +27,7 @@ spec:
       containers:
       - args:
         - receive
-        - --log.level=info
+        - --log.level=debug
         - --log.format=logfmt
         - --grpc-address=0.0.0.0:10901
         - --http-address=0.0.0.0:10902

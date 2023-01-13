@@ -61,6 +61,6 @@ spec:
           service:
             name: minio-service
             port:
-              number: 37131
+              number: 43807 
 
               
