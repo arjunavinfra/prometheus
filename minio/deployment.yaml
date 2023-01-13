@@ -25,8 +25,11 @@ spec:
       - name: minio
         # Pulls the default Minio image from Docker Hub
         image: minio/minio:latest
-        args:
-        - server /storage --console-address :9090
+        command:
+        - /bin/bash
+        - -c
+        args: 
+        - minio server /data --console-address :9090
         env:
         # Minio access key and secret key
         - name: MINIO_ACCESS_KEY

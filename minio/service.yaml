@@ -10,8 +10,8 @@ spec:
       targetPort: 9000
       protocol: TCP
     - name: ui
-      port: 43807 
-      targetPort: 43807 
+      port: 9090
+      targetPort: 9090
       protocol: TCP
   selector:
     app: minio
