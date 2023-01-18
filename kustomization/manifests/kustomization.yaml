@@ -12,3 +12,4 @@ resources:
 - prometheus-rule
 # - sample-instument-app
 - thanos
+- ./ingress-svc.yaml
