@@ -2,13 +2,13 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 
 kubectl  apply -f namespace.yaml
 
-helm upgrade kube-prometheus \
+helm install kube-prometheus \
     --set prometheus.thanos.create=true \
     --namespace monitoring \
     --values  prometheus-values.yaml \
     bitnami/kube-prometheus
 
-helm upgrade thanos \
+helm install thanos \
     --values thanos-values.yaml \
     --namespace monitoring \
     bitnami/thanos
