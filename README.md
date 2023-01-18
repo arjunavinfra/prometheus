@@ -8,4 +8,6 @@ for installing with helm helm just run
 
 For installing with kustomization run
 
+```ruby
 kubectl apply -f kustomization/
+```
