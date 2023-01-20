@@ -9,5 +9,12 @@ for installing with helm helm just run
 For installing with kustomization run
 
 ```ruby
-kubectl apply -f kustomization/
+kubectl apply -k kustomization/
+```
+
+For standalone deployment 
+
+
+```ruby
+kubectl apply -f minimal/
 ```
