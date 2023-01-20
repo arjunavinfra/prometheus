@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  prometheus
+  labels:
+    app:  prometheus
+spec:
+  
+  selector:
+    matchLabels:
+      app: prometheus
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  prometheus
+    spec:
+      # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      serviceAccountName: prometheus
+      containers:
+      - name:  prometheus
+        image: prom/prometheus:v2.41.0
+        command: ["/bin/sh"]
+        args: ["-c", "/bin/prometheus --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --storage.tsdb.max-block-duration=2h   --storage.tsdb.min-block-duration=2h   --web.enable-lifecycle"]
+        resources:
+          requests:
+            cpu: 100m
+            memory: 300Mi
+          limits:
+            cpu: 100m
+            memory: 500Mi
+        livenessProbe:
+          tcpSocket:
+            port: 9090
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /metrics
+            port: 9090
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        volumeMounts:
+        - name: prometheus-cfg
+          mountPath: /etc/prometheus/  
+        - name: prometheus-data
+          mountPath: /prometheus/    
+        ports:
+        - containerPort:  9090
+          name:  prometheus
+
+      - name:  thanos-sidecar
+        image: thanosio/thanos:v0.30.1
+        command: ["/bin/sh"]
+        args: ["-c", "thanos sidecar --tsdb.path /prometheus  --prometheus.url   http://localhost:9090  --objstore.config-file  /prometheus/thanos.yaml"] 
+        resources:
+          requests:
+            cpu: 50m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 400Mi
+        livenessProbe:
+          tcpSocket:
+            port: 10901
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 10901
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+          periodSeconds: 10
+        volumeMounts:
+        - name: thanos-objectstorage
+          mountPath: /prometheus/thanos.yaml
+          subPath:  thanos.yaml
+        - name: prometheus-data
+          mountPath: /prometheus/
+          
+        ports:
+        - containerPort:  10901
+          name:  http
+        - containerPort:  10902
+          name:  grpc
+      volumes:
+        - name: prometheus-cfg
+          configMap:
+            # Provide the name of the ConfigMap containing the files you want
+            # to add to the container
+            name: prometheus-cfg
+        - name : thanos-objectstorage
+          secret:
+             secretName: thanos-objectstorage 
+        - name: prometheus-data
+          persistentVolumeClaim:
+            claimName: prometheus
+      # restartPolicy: Always
